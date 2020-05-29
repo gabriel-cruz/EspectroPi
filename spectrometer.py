@@ -6,6 +6,8 @@ from matplotlib.figure import Figure
 import matplotlib.animation as animation
 from matplotlib import style
 from matplotlib import pyplot as plt
+import numpy as np
+from datetime import datetime
 
 import tkinter as tk
 from tkinter import ttk
@@ -13,6 +15,16 @@ from tkinter import ttk
 LARGE_FONT = ("Verdana", 12)
 style.use("ggplot")
 
+def on_click():
+
+    x, y = np.loadtxt('lampada.txt', delimiter = '/', unpack=True)
+    time = datetime.now()
+    txtTime = time.strftime('%d/%m/%Y %H:%M')
+    title = "Sample - " + txtTime
+    plt.title(title)
+    plt.plot(x, y)
+    plt.show()
+    
 class Spectrometer(tk.Tk):
     def __init__(self, *args, **kwargs):
 
@@ -41,9 +53,11 @@ class Spectrometer(tk.Tk):
         frame= self.frames[cont]
         frame.tkraise()
 
-        
+
+ 
 
 class StartPage(tk.Frame):
+    
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         label = tk.Label(self, text="Spectrometer", font=LARGE_FONT)
@@ -68,8 +82,11 @@ class StartPage(tk.Frame):
         toolbar.update()
         canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
-        button1 = ttk.Button(self, text="Acquire")
+        button1 = ttk.Button(self, text="Acquire", command = on_click)
         button1.pack()
+
+
+
 
 
 
