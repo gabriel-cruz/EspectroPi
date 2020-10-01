@@ -1,0 +1,1 @@
+STANDARD_FILE = 'lampada.txt'

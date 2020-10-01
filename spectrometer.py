@@ -11,13 +11,13 @@ from datetime import datetime
 
 import tkinter as tk
 from tkinter import ttk
-
+from constants import STANDARD_FILE
 LARGE_FONT = ("Verdana", 12)
 style.use("ggplot")
 
 def on_click():
 
-    x, y = np.loadtxt('lampada.txt', delimiter = '/', unpack=True)
+    x, y = np.loadtxt(STANDARD_FILE, delimiter = '/', unpack=True)
     time = datetime.now()
     txtTime = time.strftime('%d/%m/%Y %H:%M')
     title = "Sample - " + txtTime
@@ -90,6 +90,6 @@ class StartPage(tk.Frame):
 
 
 
-app= Spectrometer()
+app = Spectrometer()
 #app.configure(background='grey')
 app.mainloop()
